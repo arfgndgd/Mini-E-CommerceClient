@@ -13,10 +13,10 @@ export class AppComponent {
   title = 'ECommerceClient';
 
   constructor(private toastrService: CustomToastrService) {
-    toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Error, position: ToastrPosition.BottomCenter});
-    toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Info, position: ToastrPosition.BottomLeft});
-    toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Success, position: ToastrPosition.BottomRight});
-    toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Warning, position: ToastrPosition.TopLeft});
+    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Error, position: ToastrPosition.BottomCenter});
+    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Info, position: ToastrPosition.BottomLeft});
+    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Success, position: ToastrPosition.BottomRight});
+    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Warning, position: ToastrPosition.TopLeft});
 
   }
 
