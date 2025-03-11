@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
+import { Component, OnInit } from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -9,15 +7,16 @@ declare var $: any;
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ECommerceClient';
 
-  constructor(private toastrService: CustomToastrService) {
-    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Error, position: ToastrPosition.BottomCenter});
-    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Info, position: ToastrPosition.BottomLeft});
-    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Success, position: ToastrPosition.BottomRight});
-    // toastrService.message("Merhaba", "Arif", {messageType: ToastrMessageType.Warning, position: ToastrPosition.TopLeft});
-
+  ngOnInit(): void {
+    $.get("https://localhost:7005/api/products", (data) => {
+      console.log('API Response:', data);
+    }).fail((error) => {
+      console.error('API Error:', error);
+    });
   }
-
 }
+
+

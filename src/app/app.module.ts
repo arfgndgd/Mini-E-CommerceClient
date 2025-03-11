@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
-import { BaseComponent } from './base/base.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,8 @@ import { BaseComponent } from './base/base.component';
     NgxSpinnerModule
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    { provide: "baseUrl", useValue: "https://localhost:7005/api", multi: true}
   ],
   bootstrap: [AppComponent]
 })
