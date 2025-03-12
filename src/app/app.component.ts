@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
+// declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,11 @@ export class AppComponent implements OnInit{
   title = 'ECommerceClient';
 
   ngOnInit(): void {
-    $.get("https://localhost:7005/api/products", (data) => {
-      console.log('API Response:', data);
-    }).fail((error) => {
-      console.error('API Error:', error);
-    });
+    // $.get("https://localhost:7005/api/products", (data) => {
+    //   console.log('API Response:', data);
+    // }).fail((error) => {
+    //   console.error('API Error:', error);
+    // });
   }
 }
 
