@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { BaseComponent, SpinnerType } from '../../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -20,6 +20,7 @@ export class CreateComponent extends BaseComponent implements OnInit{
   ngOnInit(): void {
     
   }
+  @Output() createdProduct : EventEmitter<Create_Product> = new EventEmitter();
 
   create(name: HTMLInputElement, stock: HTMLInputElement, price: HTMLInputElement) {
     this.showSpinner(SpinnerType.BallAtom);
@@ -27,7 +28,6 @@ export class CreateComponent extends BaseComponent implements OnInit{
     create_product.name = name.value;
     create_product.stock = parseInt(stock.value);
     create_product.price = parseFloat(price.value);
-
     if (!name.value) {
       this.alertify.message("Lütfen ürün adını giriniz",
         {
@@ -38,7 +38,6 @@ export class CreateComponent extends BaseComponent implements OnInit{
       )
       return;
     }
-
     if (parseInt(stock.value) < 0) {
       this.alertify.message("Lütfen stok bilgisini giriniz",
         {
@@ -49,7 +48,6 @@ export class CreateComponent extends BaseComponent implements OnInit{
       )
       return;
     }
-
     if (parseFloat(price.value) < 0) {
       this.alertify.message("Lütfen fiyat bilgisini giriniz",
         {
@@ -60,7 +58,6 @@ export class CreateComponent extends BaseComponent implements OnInit{
       )
       return;
     }
-
     this.productService.create(create_product, () => {
       this.hideSpinner(SpinnerType.BallAtom);
       this.alertify.message("Ürün başarıyla eklenmiştir.", {
@@ -68,6 +65,7 @@ export class CreateComponent extends BaseComponent implements OnInit{
         messageType: MessageType.Success,
         position: Position.TopRight
       });
+      this.createdProduct.emit(create_product);
     }, errorMessage => {
       this.alertify.message(errorMessage,
         {
