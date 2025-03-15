@@ -7,6 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { MatPaginator } from '@angular/material/paginator';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list',
   standalone: false,
@@ -18,20 +20,22 @@ export class ListComponent extends BaseComponent implements OnInit{
     super(spinner)
   }
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'delete', 'modify'];
   dataSource : MatTableDataSource<List_Product> = null;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getProducts();
   }
 
   async getProducts() {
     this.showSpinner(SpinnerType.BallAtom);
     const allProducts: {totalCount: number; products: List_Product[]} = await this.productService.get(
-      this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => 
-      this.hideSpinner(SpinnerType.BallAtom), errorMessage => 
-      this.alertifyService.message(errorMessage, {
+      this.paginator ? this.paginator.pageIndex : 0, 
+      this.paginator ? this.paginator.pageSize : 5, 
+      () => this.hideSpinner(SpinnerType.BallAtom), 
+      (errorMessage) => this.alertifyService.message(errorMessage, {
         dissmissOthers: true,
         messageType: MessageType.Error,
         position: Position.TopRight
@@ -45,4 +49,9 @@ export class ListComponent extends BaseComponent implements OnInit{
     await this.getProducts();
   }
 
+  // delete(id, event) {
+  //   const img: HTMLImageElement = event.srcElement;
+  //   $(img.parentElement.parentElement).fadeOut(1000);
+
+  // }
 }
