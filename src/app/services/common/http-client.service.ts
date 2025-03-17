@@ -20,7 +20,6 @@ export class HttpClientService {
   //generic metodlar tanımlıyoruz : Observable<T> lazım
   get<T>(requestParameters: Partial<RequestParameters>, id?: string) : Observable<T> {
     let url: string = "";
-
     if (requestParameters.fullEndPoint) {
       url = requestParameters.fullEndPoint;
     } else{
@@ -68,7 +67,6 @@ export class HttpClientService {
     return this.httpClient.delete<T>(url, {headers: requestParameters.headers});
   }
 }
-
 
 export class RequestParameters {
   controller?: string;
