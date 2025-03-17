@@ -10,10 +10,12 @@ import { BaseDialog } from '../base/base-dialog';
 })
 export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent>{
   // readonly dialogRef = inject(MatDialogRef<DeleteDialogComponent>);
-  constructor (
+  constructor 
+  (
     dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DeleteState
-  ) {
+  ) 
+  {
     super(dialogRef)
   }
   // readonly data = inject<DeleteState>(MAT_DIALOG_DATA);
