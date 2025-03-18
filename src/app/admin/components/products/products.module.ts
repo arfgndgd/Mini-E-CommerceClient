@@ -34,7 +34,7 @@ import { DialogModule } from '@angular/cdk/dialog';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule,
+    // MatDialogModule,
     FileUploadModule,
     DialogModule
   ]

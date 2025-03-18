@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent, DeleteState } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { AlertifyService, MessageType, Position } from '../../services/admin/alertify.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DialogService } from '../../services/common/dialog.service';
 
 declare var $: any;
 
@@ -21,7 +22,8 @@ export class DeleteDirective {
     private _renderer:  Renderer2,
     private httpClientService: HttpClientService,
     private spinner: NgxSpinnerService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private dialogService: DialogService
   ) { 
     const img = _renderer.createElement("img");
     img.setAttribute("src", "images/trashicon.png");
@@ -37,8 +39,11 @@ export class DeleteDirective {
 
   @HostListener("click")
   async onClick() {
-    this.openDialog(async () => {
-      this.spinner.show(SpinnerType.BallAtom);
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
+      data: DeleteState.Yes,
+      afterClosed: () => {
+        this.spinner.show(SpinnerType.BallAtom);
       const td: HTMLTableCellElement = this.element.nativeElement;
       console.log(td)
       // await this.productService.delete(this.id); //dbden silme kısmı
@@ -69,18 +74,19 @@ export class DeleteDirective {
       // .fadeOut(1000, () => {
       //   this.callBack.emit();
       // });
-    });
-  }
-
-  openDialog(afterClosed: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: DeleteState.Yes,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == DeleteState.Yes) {
-        afterClosed();
       }
-    });
+    })
   }
+
+  // openDialog(afterClosed: any): void {
+  //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
+  //     data: DeleteState.Yes,
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result == DeleteState.Yes) {
+  //       afterClosed();
+  //     }
+  //   });
+  // }
 }
