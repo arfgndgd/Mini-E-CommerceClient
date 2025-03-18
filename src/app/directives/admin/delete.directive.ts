@@ -70,7 +70,6 @@ export class DeleteDirective {
           position: Position.TopRight
         });
       });
-      
       // .fadeOut(1000, () => {
       //   this.callBack.emit();
       // });
