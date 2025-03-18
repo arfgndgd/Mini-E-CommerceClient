@@ -5,9 +5,6 @@ import { FileUploadDialogComponent } from './file-upload-dialog/file-upload-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
-
-
-
 @NgModule({
   declarations: [
     DeleteDialogComponent,
