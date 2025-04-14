@@ -9,7 +9,6 @@ import { BaseDialog } from '../base/base-dialog';
   styleUrl: './delete-dialog.component.css'
 })
 export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent>{
-  // readonly dialogRef = inject(MatDialogRef<DeleteDialogComponent>);
   constructor 
   (
     dialogRef: MatDialogRef<DeleteDialogComponent>,

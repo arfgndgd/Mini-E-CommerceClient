@@ -26,7 +26,7 @@ export class ListComponent extends BaseComponent implements OnInit{
     super(spinner)
   }
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'photos', 'delete', 'modify'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'photos', 'modify', 'delete'];
   dataSource : MatTableDataSource<List_Product> = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,13 +60,8 @@ export class ListComponent extends BaseComponent implements OnInit{
       componentType: SelectProductImageDialogComponent,
       data: id,
       options: {
-        width: "1400px"
+        width: '1000px'
       }
     })
   }
-  // delete(id, event) {
-  //   const img: HTMLImageElement = event.srcElement;
-  //   $(img.parentElement.parentElement).fadeOut(1000);
-
-  // }
 }

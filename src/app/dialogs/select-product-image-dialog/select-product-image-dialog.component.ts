@@ -9,24 +9,28 @@ import { FileUploadOptions } from '../../services/common/file-upload/file-upload
   templateUrl: './select-product-image-dialog.component.html',
   styleUrl: './select-product-image-dialog.component.css'
 })
-export class SelectProductImageDialogComponent extends BaseDialog<SelectProductImageDialogComponent>{
+export class SelectProductImageDialogComponent extends BaseDialog<SelectProductImageDialogComponent> {
+  @Output() options!: Partial<FileUploadOptions>; 
+  // optionsı mecbur constructor içine aldım. 
+  // data henüz constructor’da atanmadan önce çalıştığı için böyle yaptım
 
-  constructor (
+  constructor(
     dialogRef: MatDialogRef<SelectProductImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SelectProductImageState 
+    @Inject(MAT_DIALOG_DATA) public data: SelectProductImageState | string
   ) {
-    super(dialogRef)
-  }
-
-  @Output() options: Partial<FileUploadOptions> = {
-    accept: ".png, .jpg, .jpeg, .gif", 
-    action: "upload",
-    controller: "products",
-    explanation: "Ürün resmini seçin",
-    isAdminPage: true,
+    super(dialogRef);
+    
+    this.options = {
+      accept: ".png, .jpeg, .jpg, .gif",
+      action: "upload",
+      controller: "products",
+      explanation: "Ürün resmini seçin",
+      isAdminPage: true,
+      queryString: `id=${this.data}`
+    }
   }
 }
 
-export enum SelectProductImageState  {
+export enum SelectProductImageState {
   Close
 }
