@@ -1,0 +1,12 @@
+.product-card {
+    max-width: 250px;
+    margin: 5px;
+    float: left; 
+}
+  
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* taşarsa alt satıra geçsin */
+  gap: 16px;        /* kartlar arası boşluk */
+  justify-content: flex-start; /* sola yasla, istersen space-between de olur */
+}
