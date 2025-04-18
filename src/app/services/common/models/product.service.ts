@@ -57,9 +57,10 @@ export class ProductService {
       action: "getProductImages",
       controller: "products"
     }, id);
-
+    debugger;
     const images: List_Product_Image[] = await firstValueFrom(getObservable);
-    successCallBack();
+    console.log(images);
+    if (successCallBack) successCallBack();
     return images;
   }
 

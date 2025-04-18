@@ -3,6 +3,7 @@
     <app-file-upload [options]="options"></app-file-upload>
 
     <mat-card class="product-card" *ngFor="let image of images">
+      <pre>{{ image | json }}</pre>
       <mat-card-header>
       </mat-card-header>
       <img mat-card-image [src]="image.path" >
