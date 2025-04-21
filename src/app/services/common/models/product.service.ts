@@ -60,7 +60,7 @@ export class ProductService {
     debugger;
     const images: List_Product_Image[] = await firstValueFrom(getObservable);
     console.log(images);
-    if (successCallBack) successCallBack();
+    successCallBack();
     return images;
   }
 
