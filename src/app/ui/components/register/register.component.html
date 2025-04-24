@@ -3,13 +3,13 @@
     <div class="col-md-4">
         <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)" style="margin-top: 50px;">
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name" 
-                  [ngClass]="{'is-invalid': submitted && component.name.errors}">
-                <div class="form-text text-muted invalid-feedback" *ngIf="submitted && component.name.errors?.required">
+                <label for="nameSurname" class="form-label">Name Surname</label>
+                <input type="text" class="form-control" id="nameSurname" placeholder="Name Surname" formControlName="nameSurname" 
+                  [ngClass]="{'is-invalid': submitted && component.nameSurname.errors}">
+                <div class="form-text text-muted invalid-feedback" *ngIf="submitted && component.nameSurname.errors?.required">
                   Fill in the field with your name and surname.
                 </div>
-                <div class="form-text text-muted invalid-feedback" *ngIf="submitted && (component.name.errors?.maxlength || component.name.errors?.minlength)">
+                <div class="form-text text-muted invalid-feedback" *ngIf="submitted && (component.nameSurname.errors?.maxlength || component.nameSurname.errors?.minlength)">
                   Enter your name and surname between 3 and 100 characters.
                 </div>
             </div>
