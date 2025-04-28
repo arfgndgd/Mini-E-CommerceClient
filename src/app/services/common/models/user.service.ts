@@ -3,7 +3,6 @@ import { HttpClientService } from '../http-client.service';
 import { User } from '../../../entities/user';
 import { Create_User } from '../../../contracts/users/create_user';
 import { firstValueFrom, Observable } from 'rxjs';
-import { Token } from '../../../contracts/token/token';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
 import { TokenResponse } from '../../../contracts/token/tokenResponse';
 
