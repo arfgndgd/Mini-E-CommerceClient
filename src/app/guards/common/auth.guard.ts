@@ -1,17 +1,38 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../services/ui/custom-toastr.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from '../../base/base.component';
 
 
 
 export const authGuard: CanActivateFn = (route, state) => {
   const token: string = localStorage.getItem("accessToken");
   const jwtHelper: JwtHelperService = inject(JwtHelperService);
+  const router: Router = inject(Router);
+  const toastrService: CustomToastrService = inject(CustomToastrService);
+  const spinner: NgxSpinnerService = inject(NgxSpinnerService);
 
-  const decodeToken = jwtHelper.decodeToken(token);
-  const expirationDate = jwtHelper.getTokenExpirationDate(token);
-  const expired: boolean = jwtHelper.isTokenExpired(token);
-  
-  debugger;
+  // const decodeToken = jwtHelper.decodeToken(token);
+  // const expirationDate = jwtHelper.getTokenExpirationDate(token);
+  let expired: boolean;
+
+  spinner.show(SpinnerType.BallAtom);
+  try {
+    expired = jwtHelper.isTokenExpired(token);
+  } catch (error) {
+    expired = true;
+  }
+
+  if (!token || expired) {
+    router.navigate(["login"], { queryParams: { returnUrl: state.url }});
+    toastrService.message("Oturum açmanız gerekiyor!", "Yetkisiz Erişim", {
+      messageType: ToastrMessageType.Warning,
+      position: ToastrPosition.TopRight
+    });
+  }
+
+  spinner.hide(SpinnerType.BallAtom);
   return true;
 };
