@@ -19,6 +19,6 @@ export class LoginComponent extends BaseComponent {
 
   async login(usernameOrEmail: string, password: string) {
     this.showSpinner(SpinnerType.BallAtom);
-    this.userService.login(usernameOrEmail, password, () => this.hideSpinner(SpinnerType.BallAtom));
+    await this.userService.login(usernameOrEmail, password, () => this.hideSpinner(SpinnerType.BallAtom));
   }
 }
