@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/common/auth.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
+import { Router } from '@angular/router';
 // declare var $: any;
 
 @Component({
@@ -7,15 +10,19 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  title = 'ECommerceClient';
-
-  ngOnInit(): void {
-    // $.get("https://localhost:7005/api/products", (data) => {
-    //   console.log('API Response:', data);
-    // }).fail((error) => {
-    //   console.error('API Error:', error);
-    // });
+export class AppComponent{
+  constructor(public authService: AuthService, private toastrService: CustomToastrService, private router: Router) {
+    authService.identityCheck();
+  }
+ 
+  signOut() {
+    localStorage.removeItem("accessToken");
+    this.authService.identityCheck();
+    this.router.navigate([""]);
+    this.toastrService.message("Oturum kapatılmıştır!", "Oturum Kapatıldı", {
+      messageType: ToastrMessageType.Warning,
+      position: ToastrPosition.TopRight
+    });
   }
 }
 
