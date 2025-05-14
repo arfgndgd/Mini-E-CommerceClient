@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
 import { UserService } from '../../../services/common/models/user.service';
@@ -6,6 +5,7 @@ import { Create_User } from '../../../contracts/users/create_user';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
 import { BaseComponent } from '../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',

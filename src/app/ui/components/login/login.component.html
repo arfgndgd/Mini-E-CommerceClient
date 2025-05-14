@@ -10,7 +10,10 @@
           <label for="password" class="form-label">Password</label>
           <input #txtPassword type="password" class="form-control" id="password" placeholder="Password">
         </div>
+
+        <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
+
         <button type="submit" class="btn btn-primary" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Login</button>
     </div>
     <div class="col-md-4"></div>
-</div>
+</div> 
